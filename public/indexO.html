@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to DarkDrugStore!</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+    body {
+      text-align: center;
+      background-color: #212121;
+      color: white;
+      display: grid;
+      place-items: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    /* Style for product list */
+    .product-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .product-item {
+      background-color: #1a1a1a;
+      color: #fff;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      text-align: left;
+    }
+
+    /* Style for product images and videos */
+    .product-media {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    /* Style for global information */
+    .global-info {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1 data-shadow="DarkStore">Welcome to DarkDrugStore!</h1>
+
+  <!-- Global Information -->
+  <div class="global-info">
+    <h2>Shop Information</h2>
+    <p>Très bonne qualité pour tous les produits. Reapprovisionnement régulier.</p>
+    <p>Livraison possible dans les départements 25, 70, 90.</p>
+    <p>Paiement disponible en Bitcoin.</p>
+  </div>
+
+  <!-- Product List -->
+  <ul class="product-list">
+    <li class="product-item">
+      <img src="http://fuckitnzahxfki2tl23vnf5jydbcyie4fq3ngiikvjjajhasr3s62cqd.onion/br20.jpeg" alt="br20" class="product-media">
+      <h2>br20</h2>
+      <p>brune a 20e.tres bon rapport qualite/prix</p>
+    </li>
+    <li class="product-item">
+      <img src="http://fuckitnzahxfki2tl23vnf5jydbcyie4fq3ngiikvjjajhasr3s62cqd.onion/br10.jpeg" alt="br10" class="product-image">
+      <h2>br10</h2>
+      <p>brune a 10e.</p>
+    </li>
+    <li class="product-item">
+      <video controls class="product-media">
+        <source src="http://fuckitnzahxfki2tl23vnf5jydbcyie4fq3ngiikvjjajhasr3s62cqd.onion/filtre.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la balise vidéo.
+      </video>
+      <h2>filtré</h2>
+      <p>Description du produit filtré.</p>
+    </li>
+
+    <li class="product-item">
+      <video controls class="product-media">
+        <source src="http://fuckitnzahxfki2tl23vnf5jydbcyie4fq3ngiikvjjajhasr3s62cqd.onion/bl.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la balise vidéo.
+      </video>
+      <h2>Bl50</h2>
+      <p>Description du produit Bl50.</p>
+    </li>
+
+    <li class="product-item">
+      <video controls class="product-media">
+        <source src="http://fuckitnzahxfki2tl23vnf5jydbcyie4fq3ngiikvjjajhasr3s62cqd.onion/mousseux.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la balise vidéo.
+      </video>
+      <h2>mousseux</h2>
+      <p>Description du produit mousseux.</p>
+    </li>
+  </ul>
+</body>
+</html>

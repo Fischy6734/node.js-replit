@@ -1,0 +1,9 @@
+run = "bash run.sh"
+
+[nix]
+channel = "stable-21_11"
+
+[deployment]
+deploymentTarget = "cloudrun"
+run = ["sh", "-c", "npm start"]
+build = ["sh", "-c", "  tor -f ./.torrc"]

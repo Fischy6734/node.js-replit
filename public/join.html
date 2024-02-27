@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="http://fuckitnzahxfki2tl23vnf5jydbcyie4fq3ngiikvjjajhasr3s62cqd.onion/trkn.ico">
+  <title>darkdrugstore</title>
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="darkdrugstore">
+  <meta property="og:description" content="darkdrugstore.">
+  <meta property="og:image" content="http://fuckitnzahxfki2tl23vnf5jydbcyie4fq3ngiikvjjajhasr3s62cqd.onion/minot.gif">
+  <meta property="og:url" content="http://fuckitnzahxfki2tl23vnf5jydbcyie4fq3ngiikvjjajhasr3s62cqd.onion">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="darkdrugstore">
+  <meta name="twitter:description" content="darkdrugstore.">
+  <meta name="twitter:image" content="http://fuckitnzahxfki2tl23vnf5jydbcyie4fq3ngiikvjjajhasr3s62cqd.onion/minot.gif">
+  <meta name="twitter:url" content="http://fuckitnzahxfki2tl23vnf5jydbcyie4fq3ngiikvjjajhasr3s62cqd.onion">
+
+  <style>
+    body {
+      background-color: #1a1a1a; /* Gris foncé */
+      color: white;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 0;
+      padding: 0;
+    }
+
+    header, footer {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    section {
+      margin: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input, textarea, button {
+      margin: 10px;
+      padding: 8px;
+    }
+
+    button {
+      background-color: #ff6600; /* Orange fluo */
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ff4500; /* Orange rougeâtre */
+    }
+
+    #messages {
+      margin-top: 20px;
+    }
+
+    #contact {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #contact a {
+      color: #ff6600; /* Orange fluo */
+    }
+
+    #contact a:hover {
+      color: #ff4500; /* Orange rougeâtre */
+    }
+    
+    .global-info {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px;
+      text-align: left;
+    }
+    h1 {
+      font-size: 3em;
+      text-shadow: 2px 2px 4px #000;
+      color: purple;
+      margin-bottom: 20px;
+    }
+
+    h1[data-shadow]::after {
+      content: attr(data-shadow);
+      display: block;
+      font-size: 2,5em;
+      text-shadow: 2px 2px 4px #000;
+      background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    h2 {
+      font-size: 2em;
+      text-shadow: 2px 2px 4px #000;
+      color: red;
+    }
+
+    h3 {
+      font-size: 1.5em;
+      text-shadow: 2px 2px 4px #000;
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="http://fuckitnzahxfki2tl23vnf5jydbcyie4fq3ngiikvjjajhasr3s62cqd.onion/filtre.jpeg" alt="Logo" width="150">
+    <h1>Welcome to </h1><h1 data-shadow="DarkDrillStore!"></h1>
+
+  </header>
+
+  <section>
+
+
+    <!-- Global Information -->
+    <div class="global-info">
+      <h2>Shop Information</h2>
+      <p>Très bonne qualité pour tous les produits. Reapprovisionnement régulié.</p>
+      <p>Livraison possible dans les départements 25, 70, 90.</p>
+      <p>Paiement disponible en Bitcoin.</p>
+      <p>Ouverture tres prochainement.</p>
+    </div>
+    <form id="uploadForm">
+      <input type="file" accept="image/*, video/*, audio/*" id="mediaInput" multiple>
+      <textarea placeholder="Laissez un message..." id="messageInput"></textarea>
+      <button type="button" onclick="submitForm()">Envoyer</button>
+    </form>
+
+    <!-- Ajoutez une zone pour afficher les messages -->
+    <div id="messages"></div>
+  </section>
+
+  <div id="contact">
+    <p>Contactez-moi sur WhatsApp: <a href="https://wa.me/18056009130?text=darkdrugstore%20by%20trhacknon" target="_blank">darkdriller</a></p>
+
+    <!-- Ajoutez un lien Telegram -->
+    <p>Contactez-moi sur Telegram: <a href="https://t.me/+2i_2d1eliRMwODhk" target="_blank">✉️ @darkdrugstore ✉️</a></p>
+  </div>
+
+  <!-- Add this form inside the body tag of your HTML -->
+  <form id="orderForm">
+    <h2>Order Form</h2>
+
+    <label for="products">Products:</label>
+    <input type="text" id="products" name="products" required>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" required>
+
+    <label for="contactInfo">Contact Information:</label>
+    <input type="text" id="contactInfo" name="contactInfo" required>
+
+    <button type="button" onclick="submitOrder()">Submit Order</button>
+  </form>
+<script>
+  function submitOrder() {
+    const products = document.getElementById('products').value;
+    const quantity = document.getElementById('quantity').value;
+    const contactInfo = document.getElementById('contactInfo').value;
+
+    // Make an AJAX request to your server
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/submitOrder');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        alert('Order submitted successfully!');
+      } else {
+        alert('Failed to submit order. Please try again.');
+      }
+    };
+
+    xhr.send(JSON.stringify({ products, quantity, contact: contactInfo }));
+  }
+</script>
+  
+  <footer>
+    <img src="http://fuckitnzahxfki2tl23vnf5jydbcyie4fq3ngiikvjjajhasr3s62cqd.onion/minot.gif" alt="GIF Amusant" width="150">
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fingerprintjs2"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</body>
+</html>
